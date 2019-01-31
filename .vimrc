@@ -1,5 +1,11 @@
-"git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set encoding=utf-8 
+set termencoding=utf-8
+set fileencodings=utf-8,gbk,latin1
+set backspace=2
 
+
+"vundle block start ----------------
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -11,30 +17,53 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'https://github.com/scrooloose/nerdtree.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+Plugin 'tomasr/molokai'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'raimondi/delimitmate'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'
+Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 Plugin 'andviro/flake8-vim'
-Plugin 'crusoexia/vim-monokai'
-" All of your Plugins must be added before the following line
+
+
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+" vundle block end ----------------
+
+
+" plugin config start --------------
+map <C-n> :NERDTreeToggle<CR>
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let g:UltiSnipsExpandTrigger="<tab>"
+
+map f <Plug>(easymotion-prefix)
+let g:EasyMotion_smartcase = 1
+colorscheme molokai
+"no jedi doc string window
+autocmd FileType python setlocal completeopt-=preview
+
+map <C-l> :call yapf#YAPF()<cr>
+
+au BufNewFile,BufRead *.py let g:PyFlakeOnWrite = 1
+" plugin config end --------------
+
 
 set t_Co=256
-syntax on
-colorscheme monokai
-
-set cursorline
+syntax on   " lang hightlight
 set nu
-set autoindent
-set tabstop=4
-set expandtab
-set shiftwidth=4 
-
-
-autocmd vimenter * NERDTree | wincmd p
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-au BufNewFile,BufRead *.py let g:PyFlakeOnWrite = 1
-map <C-l> :PyFlakeAuto<CR>
+set cursorline
+set autoindent  " same indent as previous line
+set expandtab " trans tab to spaces
+set softtabstop=4 "trans how many spaces for a tab
+set shiftwidth=4  " when use << or >> to indent or unindent: how many characters
+set scrolloff=10  " let 10 lines before/after cursor during scroll

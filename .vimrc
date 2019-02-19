@@ -30,7 +30,8 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'raimondi/delimitmate'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'
-Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
+"Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
+Plugin 'mindriot101/vim-yapf'
 Plugin 'andviro/flake8-vim'
 
 
@@ -52,7 +53,7 @@ colorscheme molokai
 "no jedi doc string window
 autocmd FileType python setlocal completeopt-=preview
 
-map <C-l> :call yapf#YAPF()<cr>
+map <C-l> :Yapf<CR>
 
 au BufNewFile,BufRead *.py let g:PyFlakeOnWrite = 1
 " plugin config end --------------

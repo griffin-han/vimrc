@@ -59,6 +59,8 @@ au BufNewFile,BufRead *.py let g:PyFlakeOnWrite = 1
 " plugin config end --------------
 
 
+map <C-y> :set invpaste paste? <CR>
+
 set t_Co=256
 syntax on   " lang hightlight
 set nu

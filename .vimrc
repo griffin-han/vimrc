@@ -1,4 +1,4 @@
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 set encoding=utf-8 
 set termencoding=utf-8
 set fileencodings=utf-8,gbk,latin1
@@ -10,32 +10,39 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
+" Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
 
-Plugin 'tomasr/molokai'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'raimondi/delimitmate'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
-"Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
-Plugin 'mindriot101/vim-yapf'
-Plugin 'andviro/flake8-vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
+Plug 'tomasr/molokai'
+Plug 'easymotion/vim-easymotion'
+Plug 'tomtom/tcomment_vim'
+Plug 'raimondi/delimitmate'
+Plug 'davidhalter/jedi-vim'
+Plug 'ervandew/supertab'
+Plug 'andviro/flake8-vim'
+Plug 'tell-k/vim-autopep8'
 
-call vundle#end()            " required
+Plug 'tmhedberg/simpylfold'
+
+Plug 'python-rope/rope'
+Plug 'python-rope/ropevim'
+
+call plug#end()
+
+" call vundle#end()            " required
 filetype plugin indent on    " required
 " vundle block end ----------------
 
@@ -53,13 +60,19 @@ colorscheme molokai
 "no jedi doc string window
 autocmd FileType python setlocal completeopt-=preview
 
-map <C-l> :Yapf<CR>
+" map <C-l> :Yapf --style google<CR>
+map <C-l> :call Autopep8()<CR>
+let g:autopep8_disable_show_diff=1
+let g:PyFlakeDisabledMessages = 'E226,E309'
 
 au BufNewFile,BufRead *.py let g:PyFlakeOnWrite = 1
+
+let g:SimpylFold_fold_import = 0
 " plugin config end --------------
 
 
 map <C-y> :set invpaste paste? <CR>
+
 
 set t_Co=256
 syntax on   " lang hightlight

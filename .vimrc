@@ -18,7 +18,7 @@ filetype off                  " required
 " let Vundle manage Vundle, required
 " Plugin 'VundleVim/Vundle.vim'
 call plug#begin('~/.vim/plugged')
-
+"""""
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
@@ -34,11 +34,11 @@ Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
 Plug 'andviro/flake8-vim'
 Plug 'tell-k/vim-autopep8'
+""""""
+" Plug 'tmhedberg/simpylfold'
 
-Plug 'tmhedberg/simpylfold'
-
-Plug 'python-rope/rope'
-Plug 'python-rope/ropevim'
+" Plug 'python-rope/rope'
+" Plug 'python-rope/ropevim'
 
 call plug#end()
 
@@ -59,7 +59,8 @@ let g:EasyMotion_smartcase = 1
 colorscheme molokai
 "no jedi doc string window
 autocmd FileType python setlocal completeopt-=preview
-
+let g:jedi#show_call_signatures = "2"
+set noshowmode
 " map <C-l> :Yapf --style google<CR>
 map <C-l> :call Autopep8()<CR>
 let g:autopep8_disable_show_diff=1

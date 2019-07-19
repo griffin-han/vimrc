@@ -34,6 +34,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
 Plug 'andviro/flake8-vim'
 Plug 'tell-k/vim-autopep8'
+Plug 'romainl/vim-qf'
 """"""
 " Plug 'tmhedberg/simpylfold'
 
@@ -73,7 +74,7 @@ let g:SimpylFold_fold_import = 0
 
 
 map <C-y> :set invpaste paste? <CR>
-
+map <C-i> :set nu! <CR>
 
 set t_Co=256
 syntax on   " lang hightlight

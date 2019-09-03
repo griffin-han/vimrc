@@ -74,7 +74,8 @@ let g:SimpylFold_fold_import = 0
 
 
 map <C-y> :set invpaste paste? <CR>
-map <C-i> :set nu! <CR>
+" use tab can switch line number
+" map <C-i> :set nu! <CR>
 
 set t_Co=256
 syntax on   " lang hightlight
